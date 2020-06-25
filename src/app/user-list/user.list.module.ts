@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {UserListRoutingModule} from './user.list.routing.module';
 import {UserListService} from './service/user-list-service';
 import {CommonModule} from '@angular/common';
+import {AddressDialogComponent} from "./components/address-dialog/address-dialog.component";
 
 @NgModule({
   declarations: [
-    UserListComponent
+    UserListComponent,
+    AddressDialogComponent
   ],
     imports: [
         SharedModule,
