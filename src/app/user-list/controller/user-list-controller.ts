@@ -3,11 +3,15 @@ import {UserListService} from '../service/user-list-service';
 import {Observable, of} from 'rxjs';
 import {UserDto} from '../dto/user-dto';
 import {SearchQuerryRequest} from '../dto/SearchQuerryRequest';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
+import {Router} from "@angular/router";
+import {AuthController} from "../../auth/conroller/auth-controller";
 
 @Injectable()
 export class UserListController {
-  constructor(private userListService: UserListService) {
+  constructor(private userListService: UserListService,
+              private router:Router,
+              private authController: AuthController) {
   }
 
   public getUsers(page: string, limit: string, sortableElem: string, sortType: string): Observable<UserDto[]> {
@@ -17,10 +21,26 @@ export class UserListController {
       page,
       limit
     };
-    return this.userListService.getUsers(request);
+    return this.userListService.getUsers(request).pipe(
+      catchError(err => {
+        if (err.status == 403){
+          this.authController.isLoggedIn$.next(false);
+          this.router.navigateByUrl("/auth/login");
+        }
+        return of(err);
+      })
+    );
   }
 
   public getUserCount(): Observable<number> {
-    return this.userListService.getUserCount();
+    return this.userListService.getUserCount().pipe(
+      catchError(err => {
+        if (err.status == 403){
+          this.authController.isLoggedIn$.next(false);
+          this.router.navigateByUrl("/auth/login");
+        }
+        return of(err);
+      })
+    );
   }
 }

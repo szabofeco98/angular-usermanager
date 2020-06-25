@@ -1,11 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {UserListController} from '../../controller/user-list-controller';
 import {UserDto} from '../../dto/user-dto';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +11,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'name', 'username'];
+  public displayedColumns: string[] = ['id', 'name', 'username' , 'action'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   public users: UserDto[];
@@ -61,5 +58,10 @@ export class UserListComponent implements OnInit {
         this.num = value;
       }
     );
+  }
+
+  onUserEdit(element: UserDto) {
+    console.log(element);
+
   }
 }
