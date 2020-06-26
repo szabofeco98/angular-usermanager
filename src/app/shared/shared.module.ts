@@ -15,6 +15,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
 import {CommonModule} from '@angular/common';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 const materialModules = [
@@ -31,7 +32,8 @@ const materialModules = [
   ReactiveFormsModule,
   MatPaginatorModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatDialogModule
 ];
 
 @NgModule({
