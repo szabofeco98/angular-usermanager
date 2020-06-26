@@ -30,6 +30,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+  <button  type="submit" style="width: 15%; margin-top: 15px" mat-stroked-button color="primary" (click)="openAddUserDialog()" >Add</button>
   <mat-paginator [pageSizeOptions]="[2,5, 10, 20]" [length]="num" (page)="pageChange()" showFirstLastButtons></mat-paginator>
 </div>

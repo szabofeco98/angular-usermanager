@@ -3,6 +3,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {UserListController} from '../../controller/user-list-controller';
 import {UserDto} from '../../dto/user-dto';
+import {MatDialog} from "@angular/material/dialog";
+import {AddressDialogComponent} from "../address-dialog/address-dialog.component";
 
 
 @Component({
@@ -21,7 +23,7 @@ export class UserListComponent implements OnInit {
 
 
 
-  constructor(private userListController: UserListController) {
+  constructor(private userListController: UserListController,public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -61,7 +63,14 @@ export class UserListComponent implements OnInit {
   }
 
   onUserEdit(element: UserDto) {
+    const dialogRef = this.dialog.open(AddressDialogComponent);
     console.log(element);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    })
+  }
+
+  openAddUserDialog() {
 
   }
 }

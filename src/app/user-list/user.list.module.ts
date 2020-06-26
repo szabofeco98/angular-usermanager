@@ -22,6 +22,7 @@ import {AddressDialogComponent} from "./components/address-dialog/address-dialog
   exports: [
     UserListComponent
   ],
+  entryComponents: [AddressDialogComponent],
   bootstrap: [UserListComponent]
 })
 export class UserListModule {
