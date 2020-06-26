@@ -6,11 +6,13 @@ import {UserListRoutingModule} from './user.list.routing.module';
 import {UserListService} from './service/user-list-service';
 import {CommonModule} from '@angular/common';
 import {AddressDialogComponent} from "./components/address-dialog/address-dialog.component";
+import {UserComponent} from "./components/user/user.component";
 
 @NgModule({
   declarations: [
     UserListComponent,
     AddressDialogComponent
+    UserComponent
   ],
     imports: [
         SharedModule,
