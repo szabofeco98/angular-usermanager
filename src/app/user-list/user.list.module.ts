@@ -11,7 +11,7 @@ import {UserComponent} from "./components/user/user.component";
 @NgModule({
   declarations: [
     UserListComponent,
-    AddressDialogComponent
+    AddressDialogComponent,
     UserComponent
   ],
     imports: [
