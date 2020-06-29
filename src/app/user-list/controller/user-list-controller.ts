@@ -43,4 +43,8 @@ export class UserListController {
       })
     );
   }
+
+  public registration(user: UserDto): Observable<string>{
+    return this.userListService.postRegistration(user);
+  }
 }

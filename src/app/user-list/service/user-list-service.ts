@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserDto} from '../dto/user-dto';
 import {SearchQuerryRequest} from '../dto/SearchQuerryRequest';
@@ -22,5 +22,9 @@ export class UserListService {
 
   getUserCount(): Observable<any> {
     return this.http.get('/user/getUserCount', {responseType: 'text'});
+  }
+
+  postRegistration(user: UserDto): Observable<any> {
+    return this.http.post("/user/registration", user , {responseType: "text"});
   }
 }

@@ -5,6 +5,9 @@ import {UserListController} from '../../controller/user-list-controller';
 import {UserDto} from '../../dto/user-dto';
 import {MatDialog} from "@angular/material/dialog";
 import {AddressDialogComponent} from "../address-dialog/address-dialog.component";
+import {UserComponent} from "../user/user.component";
+import {DialogResult} from "../../../shared/enums/dialogresult";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -13,7 +16,7 @@ import {AddressDialogComponent} from "../address-dialog/address-dialog.component
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'name', 'username' , 'action'];
+  public displayedColumns: string[] = ['id', 'name', 'username', 'action'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   public users: UserDto[];
@@ -22,8 +25,9 @@ export class UserListComponent implements OnInit {
   public num;
 
 
-
-  constructor(private userListController: UserListController,public dialog: MatDialog) {
+  constructor(private userListController: UserListController,
+              public dialog: MatDialog,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -71,6 +75,28 @@ export class UserListComponent implements OnInit {
   }
 
   openAddUserDialog() {
+    const dialogRef = this.dialog.open(UserComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == DialogResult.SUCCESS) {
+        this.getItemCount();
+        this._snackBar.open("Success","OK" ,{
+          duration: 2000,
+        });
+      }
 
+      if (result == DialogResult.CLOSE){
+        this._snackBar.open("Closed","OK" ,{
+          duration: 2000,
+        });
+      }
+
+      if (result == DialogResult.FAIL){
+        this._snackBar.open("Server Error","OK" ,{
+          duration: 2000,
+        });
+      }
+
+
+    })
   }
 }

@@ -7,6 +7,7 @@ import {UserListService} from './service/user-list-service';
 import {CommonModule} from '@angular/common';
 import {AddressDialogComponent} from "./components/address-dialog/address-dialog.component";
 import {UserComponent} from "./components/user/user.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -20,11 +21,11 @@ import {UserComponent} from "./components/user/user.component";
         UserListRoutingModule,
         CommonModule,
     ],
-  providers: [UserListService],
+  providers: [UserListService, MatDialog],
   exports: [
     UserListComponent
   ],
-  entryComponents: [AddressDialogComponent],
+  entryComponents: [AddressDialogComponent, UserComponent],
   bootstrap: [UserListComponent]
 })
 export class UserListModule {

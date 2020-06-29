@@ -1,1 +1,27 @@
-<p>user works!</p>
+<mat-card class="login-card">
+
+  <form class="example-form" [formGroup]="addUserForm" (ngSubmit)="add()">
+    <mat-card-title class="title">
+      Add
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <mat-label>Write your User Name</mat-label>
+        <input formControlName="username" matInput placeholder="Ex. user1" >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Write your name</mat-label>
+        <input formControlName="name" type="text" matInput placeholder="Nagy Gyozo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Write your password</mat-label>
+        <input formControlName="password" type="password" matInput placeholder="***********">
+      </mat-form-field>
+
+      <button type="button" style="margin-left: 14px;width: 40%" mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
+      <button type="submit" style="margin-left: 30px; width: 40%;" mat-raised-button color="primary" [disabled]='addUserForm.invalid' >Add</button>
+    </mat-card-content>
+  </form>
+</mat-card>
